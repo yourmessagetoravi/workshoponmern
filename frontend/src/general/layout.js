@@ -49,6 +49,8 @@ function Layout() {
 
 
             <Nav.Link  as={Link} to="/contact">Contact</Nav.Link>
+            <Nav.Link  as={Link} to="/admin">Admin Dashboard</Nav.Link>
+            <Nav.Link  as={Link} to="/studentdata">Student Data</Nav.Link>
             <Nav.Link  as={Link} to="/login">signup|Signin</Nav.Link>
             <Nav.Link  as={Link} to="/Logout">Logout</Nav.Link>
           </Nav>

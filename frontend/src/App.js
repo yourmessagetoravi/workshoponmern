@@ -39,7 +39,9 @@ import ShoppingCart from "./case-studies/shoppingCart";
 import Register from "./loginpages/register";
 import Login from "./loginpages/login";
 
-
+//admindashboad import
+import Admindashboard from "./admin/admin";
+import StudentData from "./admin/studentlist";
 function App() {
 
   const [cart, setCart] = useState([]);
@@ -90,6 +92,8 @@ function App() {
 
         <Route path="/register" element={<Register />}/>
         <Route path="/login" element={<Login />}/>
+        <Route path="/admin" element={<Admindashboard />}/>
+        <Route path="/studentdata" element={<StudentData />}/>
         
 
     

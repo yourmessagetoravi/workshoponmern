@@ -75,6 +75,32 @@ app.get('/getstudents/:id',async (req,res) =>{
     }
 });
 
+//Update record:
+// Update student record by ID
+app.put('/updatestudent/:id', async (req, res) => {
+    const { sname, age, grade } = req.body;
+
+    try {
+        // Find the student by ID and update the fields
+        const updatedStudent = await Student.findByIdAndUpdate(
+            req.params.id,
+            { sname, age, grade },
+            { new: true } // Set to true to return the updated document
+        );
+
+        if (!updatedStudent) {
+            return res.status(404).json({ error: 'Student not found' });
+        }
+
+        // Return the updated student
+        return res.json(updatedStudent);
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({ error: 'Internal Server error' });
+    }
+});
+//update record ends here
+
 // delete record from table
 app.delete('/deletestudent/:id',async(req,res) =>{
     try{
