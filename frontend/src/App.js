@@ -4,6 +4,7 @@ import Layout from "./general/layout";
 import 'react-bootstrap/dist/react-bootstrap.min.js';
 // import { BrowserRouter,Route,Routes} from "react-router-dom";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import Home from "./general/home";
 import About from "./general/about";
@@ -43,6 +44,7 @@ import Login from "./loginpages/login";
 import Admindashboard from "./admin/admin";
 import StudentData from "./admin/studentlist";
 function App() {
+  const user = JSON.parse(localStorage.getItem('user'));
 
   const [cart, setCart] = useState([]);
 
@@ -92,7 +94,10 @@ function App() {
 
         <Route path="/register" element={<Register />}/>
         <Route path="/login" element={<Login />}/>
-        <Route path="/admin" element={<Admindashboard />}/>
+        <Route
+        path="/admin"
+        element={user ? <Admindashboard /> : <Navigate to="/login" />}
+      />
         <Route path="/studentdata" element={<StudentData />}/>
         
 

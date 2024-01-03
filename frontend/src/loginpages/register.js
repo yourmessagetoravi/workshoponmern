@@ -1,6 +1,41 @@
+import React,{ useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate correctly
+import axios from 'axios';
 
+const Register = () => {
 
-function Register() {
+  //use the usestate:
+  
+    const [formData, setFormData] = useState({
+      username: '',
+      password: '',
+    });
+
+    const navigate = useNavigate(); // Use the correct hook name
+
+    const handleInputChange = (e) => {
+      setFormData({
+        ...formData,
+        [e.target.id]: e.target.value,
+      });
+    };
+
+//executing the Registration process
+
+const handleRegister = async () => {
+  try {
+    const response = await axios.post('http://localhost:5000/register', formData);
+
+    if (response.status === 200) {
+      navigate('/login'); // Use navigate instead of history.push
+    } else {
+      console.log(response.data.error);
+    }
+  } catch (error) {
+    console.error('Error during registration:', error);
+  }
+};
+
   return (
     <section className="vh-100" style={{ backgroundColor: "#eee" }}>
   <div className="container h-100">
@@ -53,12 +88,12 @@ function Register() {
                       </label>
                     </div>
                   </div>
-  
+     
             
                   <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="button" className="btn btn-primary btn-lg">
-                      Register
-                    </button>
+                  <button type="button" className="btn btn-primary btn-lg" onClick={handleRegister}>
+      Register
+    </button>
                   </div>
                 </form>
 
@@ -80,5 +115,5 @@ function Register() {
 
   );
 }
-
 export default Register;
+
